@@ -1,16 +1,27 @@
 import { defineConfig } from 'vite';
 import reactRefresh from '@vitejs/plugin-react-refresh';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import alias from '@rollup/plugin-alias';
+import { resolve } from 'path';
 
 export default defineConfig({
 	build: {
 		outDir: 'build',
 	},
-	resolve: {
-		alias: {
-			'modules/': path.resolve(__dirname, './src/modules'),
-		},
-	},
-	plugins: [react(), reactRefresh()],
+	plugins: [
+		react(),
+		reactRefresh(),
+		alias({
+			entries: [
+				{
+					find: 'modules',
+					replacement: resolve(__dirname, './src/modules'),
+				},
+				{
+					find: 'components',
+					replacement: resolve(__dirname, './src/modules/shared/components'),
+				},
+			],
+		}),
+	],
 });

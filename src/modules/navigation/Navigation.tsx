@@ -1,15 +1,22 @@
 import { Link } from 'react-router-dom';
-import { NavigationWrapper } from './Navigation.style';
-import { Menu, MenuButton, MenuList, MenuItem, Button } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { Actions, NavigationWrapper } from './Navigation.style';
+import { Menu, MenuButton, MenuList, MenuItem, Button, useColorMode, IconButton } from '@chakra-ui/react';
+import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 function Navigation() {
+	const { colorMode, toggleColorMode } = useColorMode();
+
 	return (
 		<NavigationWrapper>
 			<Link to="/">Logo</Link>
-			<div>
+			<Actions>
+				<IconButton
+					onClick={toggleColorMode}
+					icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+					aria-label="Button to switch theme theme"
+				/>
 				<Menu>
-					<MenuButton colorScheme="purple" as={Button} rightIcon={<ChevronDownIcon />}>
+					<MenuButton colorScheme={'primary'} as={Button} rightIcon={<ChevronDownIcon />}>
 						Actions
 					</MenuButton>
 					<MenuList>
@@ -21,7 +28,7 @@ function Navigation() {
 						</Link>
 					</MenuList>
 				</Menu>
-			</div>
+			</Actions>
 		</NavigationWrapper>
 	);
 }

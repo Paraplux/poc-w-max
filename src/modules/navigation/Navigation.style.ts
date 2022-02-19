@@ -7,6 +7,9 @@ export const NavigationWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
-	background: #f0e6ef;
+`;
+export const Actions = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 16px;
 `;

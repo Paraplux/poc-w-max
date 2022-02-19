@@ -1,0 +1,19 @@
+{
+	"env": { "browser": true },
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2020,
+		"sourceType": "module"
+	},
+	"extends": ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "plugin:react/recommended"],
+	"ignorePatterns": ["*.html", "dist/**/*"],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+	},
+	"settings": {
+		"react": {
+			"version": "17.0.2"
+		}
+	}
+}

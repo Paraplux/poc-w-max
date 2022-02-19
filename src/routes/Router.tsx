@@ -1,6 +1,6 @@
-import { Routes, Route } from "react-router-dom";
-import Layout from "../Layout";
-import Login from "../modules/authentication/screens/Login";
+import { Routes, Route } from 'react-router-dom';
+import Layout from '../Layout';
+import Login from '../modules/authentication/screens/Login';
 
 const About = () => <div>About</div>;
 

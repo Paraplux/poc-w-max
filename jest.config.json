@@ -1,0 +1,43 @@
+{
+	"collectCoverageFrom": [
+		"src/**/*.{ts,tsx}",
+		"!<rootDir>/node_modules/",
+		"!src/routes/Router.tsx",
+		"!src/App.tsx",
+		"!src/Layout.tsx",
+		"!src/**/types.ts",
+		"!src/**/styles.tsx"
+	],
+	"collectCoverage": true,
+	"coverageReporters": ["json", "cobertura", "text", "lcov"],
+	"transform": {
+		"^.+\\.tsx?$": [
+			"@swc/jest",
+			{
+				"module": {
+					"type": "module"
+				},
+				"sourceMaps": true,
+				"jsc": {
+					"parser": {
+						"syntax": "typescript",
+						"tsx": true
+					},
+					"transform": {
+						"react": {
+							"runtime": "automatic"
+						}
+					}
+				}
+			}
+		]
+	},
+	"testEnvironment": "jsdom",
+	"moduleNameMapper": {
+		"\\.(css|sass|scss)$": "identity-obj-proxy",
+		"\\.(jpg|jpeg|png)$": "jest-static-stubs/$1",
+		"^modules/(.*)$": "<rootDir>/src/modules/$1",
+		"^components/(.*)$": "<rootDir>/src/modules/shared/components/$1",
+		"^config/(.*)$": "<rootDir>/src/config/$1"
+	}
+}

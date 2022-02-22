@@ -14,6 +14,10 @@ export default defineConfig({
 		alias({
 			entries: [
 				{
+					find: 'config',
+					replacement: resolve(__dirname, './src/config'),
+				},
+				{
 					find: 'modules',
 					replacement: resolve(__dirname, './src/modules'),
 				},

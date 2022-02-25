@@ -1,16 +1,14 @@
+import { Heading } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from '../Layout';
-import Login from 'modules/authentication/screens/Login';
-
-const About = () => <div>About</div>;
+import Login from 'modules/authentication/screens/Login/Login';
 
 function Router() {
 	return (
 		<Routes>
 			<Route path="/" element={<Layout />}>
-				<Route path="" element={<h1>This is the home page</h1>} />
+				<Route path="" element={<Heading>Home page</Heading>} />
 				<Route path="login" element={<Login />} />
-				<Route path="about" element={<About />} />
 			</Route>
 		</Routes>
 	);

@@ -1,33 +1,37 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Actions, NavigationWrapper } from './Navigation.style';
-import { Menu, MenuButton, MenuList, MenuItem, Button, useColorMode, IconButton } from '@chakra-ui/react';
-import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Button, useColorMode, IconButton, useToast, Tooltip } from '@chakra-ui/react';
+import { HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 function Navigation() {
+	const navigate = useNavigate();
+	const toast = useToast();
 	const { colorMode, toggleColorMode } = useColorMode();
+	const themeLabel = colorMode === 'light' ? 'sombre' : 'lumineux';
 
 	return (
 		<NavigationWrapper>
-			<Link to="/">Logo</Link>
+			<HamburgerIcon onClick={() => navigate('/')} boxSize={8} />
 			<Actions>
-				<IconButton
-					onClick={toggleColorMode}
-					icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-					aria-label="Button to switch theme theme"
-				/>
-				<Menu>
-					<MenuButton colorScheme={'primary'} as={Button} rightIcon={<ChevronDownIcon />}>
-						Actions
-					</MenuButton>
-					<MenuList>
-						<Link to="/login">
-							<MenuItem>Se connecter</MenuItem>
-						</Link>
-						<Link to="/about">
-							<MenuItem>A propos</MenuItem>
-						</Link>
-					</MenuList>
-				</Menu>
+				<Tooltip label={`Activer le thème ${themeLabel}`}>
+					<IconButton
+						size="lg"
+						variant={'ghost'}
+						onClick={() => {
+							toggleColorMode();
+							toast({
+								title: `Thème ${themeLabel} chargé`,
+								duration: 1000,
+								isClosable: true,
+							});
+						}}
+						icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+						aria-label={`Bouton pour afficher le thème ${themeLabel}`}
+					/>
+				</Tooltip>
+				<Button onClick={() => navigate('/login')} variant={colorMode === 'light' ? 'ghost' : 'outline'}>
+					Se connecter
+				</Button>
 			</Actions>
 		</NavigationWrapper>
 	);

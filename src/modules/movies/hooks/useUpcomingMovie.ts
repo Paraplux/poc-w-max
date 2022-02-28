@@ -12,7 +12,10 @@ function useUpcomingMovie() {
 			const { data } = await axios.get(
 				'https://api.themoviedb.org/3/movie/upcoming?api_key=040dff99eeba55116f8145fd1862aa4d&language=fr&page=1',
 			);
-			setData(data.results[0]);
+			const movie = data.results[0];
+			movie.poster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+			delete movie.poster_path;
+			setData(movie);
 		} catch (e) {
 			throw new Error('Cannot fetch data : ' + (e as Error).message);
 		} finally {
